@@ -1,0 +1,28 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://dhsfq0ubwb5p0"]
+
+[ext_resource type="FontFile" uid="uid://d2ga5c54xh81e" path="res://ui/font.ttf" id="1_bsica"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jbloc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6mvp2"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w8rmh"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_benjb"]
+bg_color = Color(1, 1, 1, 1)
+
+[resource]
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0, 0, 0, 1)
+Button/fonts/font = ExtResource("1_bsica")
+Button/styles/focus = SubResource("StyleBoxEmpty_jbloc")
+Button/styles/hover = SubResource("StyleBoxFlat_6mvp2")
+Button/styles/normal = SubResource("StyleBoxFlat_w8rmh")
+Button/styles/pressed = SubResource("StyleBoxFlat_benjb")

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cno1qmtrxqres"]
+
+[ext_resource type="Script" path="res://main/main.gd" id="1_4bd1j"]
+[ext_resource type="PackedScene" uid="uid://8v7jbi6uny6s" path="res://ui/start_menu/start_menu.tscn" id="2_btpxb"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_4bd1j")
+path_to_first_level = "res://level/levels/this_looks_familiar.tscn"
+
+[node name="Game" type="Node2D" parent="."]
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartMenu" parent="UI" instance=ExtResource("2_btpxb")]
+layout_mode = 1

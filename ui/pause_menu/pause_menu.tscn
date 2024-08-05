@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg56e8fmuqgtp"]
+
+[ext_resource type="Script" path="res://ui/pause_menu/pause_menu.gd" id="1_igx2u"]
+[ext_resource type="Theme" uid="uid://jb8hjfd7bqop" path="res://ui/themes/top_theme.tres" id="2_vghg2"]
+[ext_resource type="Theme" uid="uid://dhsfq0ubwb5p0" path="res://ui/themes/bottom_theme.tres" id="3_4hmir"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1tub"]
+bg_color = Color(0.259294, 0.259294, 0.259294, 0.6)
+
+[node name="PauseMenu" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_e1tub")
+script = ExtResource("1_igx2u")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 2
+
+[node name="Vertical" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Top" type="VBoxContainer" parent="CenterContainer/Vertical"]
+layout_mode = 2
+theme = ExtResource("2_vghg2")
+alignment = 1
+
+[node name="Title" type="Label" parent="CenterContainer/Vertical/Top"]
+layout_mode = 2
+text = "The game is paused"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/Vertical/Top"]
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="CenterContainer/Vertical/Top"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Resume"
+
+[node name="Bottom" type="VBoxContainer" parent="CenterContainer/Vertical"]
+layout_mode = 2
+theme = ExtResource("3_4hmir")
+alignment = 1
+
+[node name="QuitToMenuButton" type="Button" parent="CenterContainer/Vertical/Bottom"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit to Menu"
+
+[node name="QuitGameButton" type="Button" parent="CenterContainer/Vertical/Bottom"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit Game"
