@@ -1,15 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwltaurcg0hpo"]
+[gd_scene load_steps=6 format=3 uid="uid://dwltaurcg0hpo"]
 
 [ext_resource type="Script" path="res://game/level.gd" id="1_iykp4"]
 [ext_resource type="PackedScene" uid="uid://dnou2st6e88qs" path="res://game/level_base/level_base.tscn" id="2_mhleg"]
-[ext_resource type="Theme" uid="uid://jb8hjfd7bqop" path="res://ui/themes/top_theme.tres" id="3_finll"]
+[ext_resource type="Theme" uid="uid://jb8hjfd7bqop" path="res://ui/theme.tres" id="3_finll"]
 [ext_resource type="PackedScene" uid="uid://bwehtnnj3n6te" path="res://game/player/player.tscn" id="4_aerxa"]
-[ext_resource type="FontFile" uid="uid://d2ga5c54xh81e" path="res://ui/font.ttf" id="4_h30dn"]
-[ext_resource type="PackedScene" uid="uid://c4i0c2a30h5ux" path="res://game/warp/black_warp.tscn" id="5_keb8e"]
-[ext_resource type="PackedScene" uid="uid://c6s1t7lhvu56x" path="res://game/warp/white_warp.tscn" id="6_hs4vj"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_248fl"]
-font = ExtResource("4_h30dn")
+[ext_resource type="PackedScene" uid="uid://c4i0c2a30h5ux" path="res://game/warp/warp.tscn" id="5_keb8e"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("warp")]
 script = ExtResource("1_iykp4")
@@ -32,8 +27,8 @@ offset_left = -183.0
 offset_top = 121.0
 offset_right = 183.0
 offset_bottom = 144.0
+theme = ExtResource("3_finll")
 text = "Touch a warp to go back to the menu :)"
-label_settings = SubResource("LabelSettings_248fl")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -42,5 +37,5 @@ vertical_alignment = 1
 [node name="BlackWarp" parent="." instance=ExtResource("5_keb8e")]
 position = Vector2(0, -48)
 
-[node name="WhiteWarp" parent="." instance=ExtResource("6_hs4vj")]
+[node name="WhiteWarp" parent="." instance=ExtResource("5_keb8e")]
 position = Vector2(0, 48)

@@ -1,58 +1,90 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg56e8fmuqgtp"]
+[gd_scene load_steps=6 format=3 uid="uid://cg56e8fmuqgtp"]
 
+[ext_resource type="Theme" uid="uid://jb8hjfd7bqop" path="res://ui/theme.tres" id="1_6ylrf"]
 [ext_resource type="Script" path="res://ui/pause_menu/pause_menu.gd" id="1_igx2u"]
-[ext_resource type="Theme" uid="uid://jb8hjfd7bqop" path="res://ui/themes/top_theme.tres" id="2_vghg2"]
-[ext_resource type="Theme" uid="uid://dhsfq0ubwb5p0" path="res://ui/themes/bottom_theme.tres" id="3_4hmir"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e1tub"]
-bg_color = Color(0.259294, 0.259294, 0.259294, 0.6)
+[sub_resource type="Animation" id="Animation_yfuuj"]
+resource_name = "fade_out"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrayBackground:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
 
-[node name="PauseMenu" type="PanelContainer"]
+[sub_resource type="Animation" id="Animation_cmrok"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GrayBackground:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rvb2f"]
+_data = {
+"RESET": SubResource("Animation_cmrok"),
+"fade_out": SubResource("Animation_yfuuj")
+}
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_igx2u")
+
+[node name="GrayBackground" type="PanelContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_e1tub")
-script = ExtResource("1_igx2u")
+theme = ExtResource("1_6ylrf")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="GrayBackground"]
 layout_mode = 2
 
-[node name="Vertical" type="VBoxContainer" parent="CenterContainer"]
+[node name="Vertical" type="VBoxContainer" parent="GrayBackground/CenterContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Top" type="VBoxContainer" parent="CenterContainer/Vertical"]
-layout_mode = 2
-theme = ExtResource("2_vghg2")
-alignment = 1
-
-[node name="Title" type="Label" parent="CenterContainer/Vertical/Top"]
+[node name="Title" type="Label" parent="GrayBackground/CenterContainer/Vertical"]
 layout_mode = 2
 text = "The game is paused"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/Vertical/Top"]
+[node name="HSeparator" type="HSeparator" parent="GrayBackground/CenterContainer/Vertical"]
 layout_mode = 2
 
-[node name="ResumeButton" type="Button" parent="CenterContainer/Vertical/Top"]
+[node name="ResumeButton" type="Button" parent="GrayBackground/CenterContainer/Vertical"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Resume"
 
-[node name="Bottom" type="VBoxContainer" parent="CenterContainer/Vertical"]
-layout_mode = 2
-theme = ExtResource("3_4hmir")
-alignment = 1
-
-[node name="QuitToMenuButton" type="Button" parent="CenterContainer/Vertical/Bottom"]
+[node name="QuitToMenuButton" type="Button" parent="GrayBackground/CenterContainer/Vertical"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit to Menu"
 
-[node name="QuitGameButton" type="Button" parent="CenterContainer/Vertical/Bottom"]
+[node name="QuitGameButton" type="Button" parent="GrayBackground/CenterContainer/Vertical"]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit Game"
+
+[node name="FadeOutAnimation" type="AnimationPlayer" parent="."]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_rvb2f")
+}

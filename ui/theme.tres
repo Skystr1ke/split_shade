@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://jb8hjfd7bqop"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://jb8hjfd7bqop"]
 
 [ext_resource type="FontFile" uid="uid://d2ga5c54xh81e" path="res://ui/font.ttf" id="1_mhpds"]
 
@@ -19,6 +19,9 @@ border_color = Color(0, 0, 0, 1)
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_u1tss"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii17a"]
+bg_color = Color(0.4, 0.4, 0.4, 0.490196)
 
 [resource]
 Button/colors/font_color = Color(0, 0, 0, 1)
@@ -42,3 +45,4 @@ Label/constants/shadow_outline_size = 1
 Label/font_sizes/font_size = 16
 Label/fonts/font = ExtResource("1_mhpds")
 Label/styles/normal = null
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_ii17a")

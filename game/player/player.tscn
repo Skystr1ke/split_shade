@@ -127,6 +127,7 @@ script = ExtResource("2_5s45l")
 
 [node name="Image" type="Polygon2D" parent="White"]
 scale = Vector2(1, 1e-05)
+color = Color(0, 0, 0, 1)
 polygon = PackedVector2Array(8, 16, -8, 16, -8, 0, 8, 0)
 
 [node name="Collider" type="CollisionShape2D" parent="White"]

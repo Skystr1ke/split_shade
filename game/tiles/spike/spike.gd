@@ -11,5 +11,5 @@ func _on_body_entered(body: Node2D) -> void:
 	var level: Level = dead_player.get_parent()
 	dead_player.queue_free()
 	
-	level.add_child.call_deferred(new_player)
+	level.warp.add_sibling.call_deferred(new_player)
 	new_player.position = dead_player.starting_position

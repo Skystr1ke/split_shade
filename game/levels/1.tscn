@@ -3,25 +3,9 @@
 [ext_resource type="Script" path="res://game/level.gd" id="1_1nvhe"]
 [ext_resource type="PackedScene" uid="uid://dnou2st6e88qs" path="res://game/level_base/level_base.tscn" id="2_57jx0"]
 [ext_resource type="PackedScene" uid="uid://b4gdbxcwnc1ka" path="res://game/tiles/tiles.tscn" id="3_372yx"]
-[ext_resource type="Theme" uid="uid://jb8hjfd7bqop" path="res://ui/themes/top_theme.tres" id="3_dsw7s"]
+[ext_resource type="Theme" uid="uid://jb8hjfd7bqop" path="res://ui/theme.tres" id="3_dsw7s"]
 [ext_resource type="PackedScene" uid="uid://bwehtnnj3n6te" path="res://game/player/player.tscn" id="4_5wm5m"]
-[ext_resource type="PackedScene" uid="uid://c4i0c2a30h5ux" path="res://game/warp/black_warp.tscn" id="6_5x8li"]
-
-[sub_resource type="Animation" id="Animation_4hdlq"]
-resource_name = "hint"
-length = 2.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Label:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 1.5, 2),
-"transitions": PackedFloat32Array(0.5, 1, 2, 1),
-"update": 0,
-"values": [Vector2(-350, -130), Vector2(-235, -130), Vector2(-235, -130), Vector2(-350, -130)]
-}
+[ext_resource type="PackedScene" uid="uid://c4i0c2a30h5ux" path="res://game/warp/warp.tscn" id="6_5x8li"]
 
 [sub_resource type="Animation" id="Animation_k83d5"]
 length = 0.001
@@ -38,6 +22,22 @@ tracks/0/keys = {
 "values": [Vector2(-350, -130)]
 }
 
+[sub_resource type="Animation" id="Animation_4hdlq"]
+resource_name = "hint"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2, 2.5),
+"transitions": PackedFloat32Array(0.5, 1, 2, 1),
+"update": 0,
+"values": [Vector2(-350, -130), Vector2(-235, -130), Vector2(-235, -130), Vector2(-350, -130)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_regvb"]
 _data = {
 "RESET": SubResource("Animation_k83d5"),
@@ -50,21 +50,11 @@ warp = NodePath("Warp")
 path_to_next_level = "res://game/levels/2.tscn"
 
 [node name="LevelBase" parent="." instance=ExtResource("2_57jx0")]
+show_behind_parent = true
 size = Vector2(0.5, 0.5)
 
-[node name="Label" type="Label" parent="."]
-offset_left = -350.0
-offset_top = -130.0
-offset_right = -177.0
-offset_bottom = -108.0
-scale = Vector2(0.5, 0.5)
-theme = ExtResource("3_dsw7s")
-text = "Press Esc to pause"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Tiles" parent="." instance=ExtResource("3_372yx")]
-layer_0/tile_data = PackedInt32Array(-7, 2, 65536, -2, 2, 65536, -1, 2, 65536, -65532, 2, 65536, -65531, 0, 0, -65528, 0, 3, -131064, 0, 1, -65525, 0, 3, -131061, 0, 2, -196597, 0, 1, -65530, 2, 65536, -65529, 2, 65536, -65527, 2, 65536, -65526, 2, 65536, 65529, 2, 131072, 65534, 2, 131072, 65535, 2, 131072, 4, 2, 131072, 6, 2, 131072, 7, 2, 131072, 9, 2, 131072, 10, 2, 131072, 5, 1, 0, 8, 1, 1, 65544, 1, 3, 11, 1, 1, 65547, 1, 2, 131083, 1, 3, -327673, 196608, 0, -327674, 131072, 0, -327675, 131072, 0, -327676, 131072, 0, -327677, 65536, 0, 262151, 196609, 0, 262150, 131073, 0, 262149, 131073, 0, 262148, 131073, 0, 262147, 65537, 0, -65524, 2, 65536, -65523, 2, 65536, -65522, 2, 65536, 12, 2, 131072, 13, 2, 131072, 14, 2, 131072)
+layer_0/tile_data = PackedInt32Array(-7, 2, 65536, -2, 2, 65536, -1, 2, 65536, -65532, 2, 65536, -65531, 0, 1, -65528, 0, 2, -131064, 0, 1, -65525, 0, 2, -131061, 0, 2, -196597, 0, 1, -65530, 2, 65536, -65529, 2, 65536, -65527, 2, 65536, -65526, 2, 65536, 65529, 2, 196608, 65534, 2, 196608, 65535, 2, 196608, 4, 2, 196608, 6, 2, 196608, 7, 2, 196608, 9, 2, 196608, 10, 2, 196608, 5, 0, 3, 8, 0, 2, 65544, 0, 3, 11, 0, 2, 65547, 0, 2, 131083, 0, 3, -327673, 196608, 0, -327674, 131072, 0, -327675, 131072, 0, -327676, 131072, 0, -327677, 65536, 0, 262151, 196608, 0, 262150, 131072, 0, 262149, 131072, 0, 262148, 131072, 0, 262147, 65536, 0, -65524, 2, 65536, -65523, 2, 65536, -65522, 2, 65536, 12, 2, 196608, 13, 2, 196608, 14, 2, 196608)
 
 [node name="Player" parent="." instance=ExtResource("4_5wm5m")]
 position = Vector2(-160, 0)
@@ -72,31 +62,19 @@ position = Vector2(-160, 0)
 [node name="Warp" parent="." instance=ExtResource("6_5x8li")]
 position = Vector2(88, -112)
 
+[node name="Label" type="Label" parent="."]
+offset_left = -350.0
+offset_top = -130.0
+offset_right = -148.0
+offset_bottom = -83.0
+scale = Vector2(0.5, 0.5)
+theme = ExtResource("3_dsw7s")
+text = "Press Esc to pause
+Press C to color flip"
+vertical_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_regvb")
 }
 autoplay = "hint"
-
-[connection signal="body_entered" from="Tiles/BlackSpike" to="Tiles/BlackSpike" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31230" to="Tiles/@Area2D@31230" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31231" to="Tiles/@Area2D@31231" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31232" to="Tiles/@Area2D@31232" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31233" to="Tiles/@Area2D@31233" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31234" to="Tiles/@Area2D@31234" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31235" to="Tiles/@Area2D@31235" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31236" to="Tiles/@Area2D@31236" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/WhiteSpike" to="Tiles/WhiteSpike" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31237" to="Tiles/@Area2D@31237" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31238" to="Tiles/@Area2D@31238" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31239" to="Tiles/@Area2D@31239" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31240" to="Tiles/@Area2D@31240" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31241" to="Tiles/@Area2D@31241" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31242" to="Tiles/@Area2D@31242" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31243" to="Tiles/@Area2D@31243" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31244" to="Tiles/@Area2D@31244" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31245" to="Tiles/@Area2D@31245" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31246" to="Tiles/@Area2D@31246" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31247" to="Tiles/@Area2D@31247" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31248" to="Tiles/@Area2D@31248" method="_on_body_entered"]
-[connection signal="body_entered" from="Tiles/@Area2D@31249" to="Tiles/@Area2D@31249" method="_on_body_entered"]

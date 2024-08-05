@@ -1,12 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://8v7jbi6uny6s"]
+[gd_scene load_steps=3 format=3 uid="uid://8v7jbi6uny6s"]
 
 [ext_resource type="Script" path="res://ui/start_menu/start_menu.gd" id="1_37qlu"]
-[ext_resource type="Theme" uid="uid://jb8hjfd7bqop" path="res://ui/themes/top_theme.tres" id="2_mldc5"]
-[ext_resource type="Shader" path="res://color_flip/color_flip.gdshader" id="3_kwp70"]
-[ext_resource type="Texture2D" uid="uid://cfr0tk2e062dm" path="res://icon.svg" id="4_6n41x"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yvyp8"]
-shader = ExtResource("3_kwp70")
+[ext_resource type="Theme" uid="uid://jb8hjfd7bqop" path="res://ui/theme.tres" id="2_mldc5"]
 
 [node name="StartMenu" type="CenterContainer"]
 anchors_preset = 15
@@ -14,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+use_top_left = true
 script = ExtResource("1_37qlu")
 
 [node name="Control" type="Control" parent="."]
@@ -62,14 +58,11 @@ text = "Play a song I made :)"
 [node name="BottomSeparator" type="HSeparator" parent="Vertical"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Vertical"]
+[node name="Credits" type="Label" parent="Vertical"]
 layout_mode = 2
-text = "Made with ❤️by Skystrr1ke"
+text = "Made with ❤️ by Skystr1ke"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Shader" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_yvyp8")
-position = Vector2(480, 270.5)
-scale = Vector2(7.5, 4.21094)
-texture = ExtResource("4_6n41x")
+[node name="Camera" type="Camera2D" parent="."]
+process_mode = 3

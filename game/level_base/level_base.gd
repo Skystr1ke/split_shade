@@ -18,7 +18,6 @@ extends Node2D
 var _size := Vector2.ONE
 
 @onready var camera: Camera2D = $Camera
-@onready var background: Control = $Background
 @onready var ground_collider: CollisionShape2D = $Ground/Collider
 @onready var left_boundary: CollisionShape2D = $Boundaries/Left
 @onready var right_boundary: CollisionShape2D = $Boundaries/Right
@@ -26,7 +25,6 @@ var _size := Vector2.ONE
 
 func _set_children_to_size() -> void:
 	camera.zoom = Vector2.ONE/_size
-	background.scale = _size
 	var ground_segment_collider: SegmentShape2D = ground_collider.shape
 	ground_segment_collider.a.x = _size.x * -480
 	ground_segment_collider.b.x  = _size.x * 480

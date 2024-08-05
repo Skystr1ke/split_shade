@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnou2st6e88qs"]
+[gd_scene load_steps=5 format=3 uid="uid://dnou2st6e88qs"]
 
 [ext_resource type="Script" path="res://game/level_base/level_base.gd" id="1_1h0xd"]
-[ext_resource type="PackedScene" uid="uid://dtjmr3du0d8yk" path="res://background.tscn" id="2_meho7"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_di8mq"]
 a = Vector2(-480, 0)
@@ -17,8 +16,7 @@ normal = Vector2(-1, 0)
 script = ExtResource("1_1h0xd")
 
 [node name="Camera" type="Camera2D" parent="."]
-
-[node name="Background" parent="." instance=ExtResource("2_meho7")]
+process_mode = 3
 
 [node name="Ground" type="StaticBody2D" parent="."]
 collision_layer = 2
