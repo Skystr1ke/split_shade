@@ -33,7 +33,7 @@ theme = ExtResource("2_mldc5")
 
 [node name="Title" type="Label" parent="Vertical"]
 layout_mode = 2
-text = "Two Color Platformer"
+text = "Split Shade"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -60,7 +60,7 @@ layout_mode = 2
 
 [node name="Credits" type="Label" parent="Vertical"]
 layout_mode = 2
-text = "Made with ❤️ by Skystr1ke"
+text = "Made with ♥ by Skystr1ke"
 horizontal_alignment = 1
 vertical_alignment = 1
 

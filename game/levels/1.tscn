@@ -12,7 +12,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Label:position")
+tracks/0/path = NodePath("Hint:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -28,14 +28,14 @@ length = 2.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Label:position")
+tracks/0/path = NodePath("Hint:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5, 2, 2.5),
 "transitions": PackedFloat32Array(0.5, 1, 2, 1),
 "update": 0,
-"values": [Vector2(-350, -130), Vector2(-235, -130), Vector2(-235, -130), Vector2(-350, -130)]
+"values": [Vector2(-365, -130), Vector2(-235, -130), Vector2(-235, -130), Vector2(-365, -130)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_regvb"]
@@ -62,15 +62,15 @@ position = Vector2(-160, 0)
 [node name="Warp" parent="." instance=ExtResource("6_5x8li")]
 position = Vector2(88, -112)
 
-[node name="Label" type="Label" parent="."]
+[node name="Hint" type="Label" parent="."]
 offset_left = -350.0
 offset_top = -130.0
-offset_right = -148.0
+offset_right = -109.0
 offset_bottom = -83.0
 scale = Vector2(0.5, 0.5)
 theme = ExtResource("3_dsw7s")
 text = "Press Esc to pause
-Press C to color flip"
+Press Shift to color flip"
 vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

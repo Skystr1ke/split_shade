@@ -13,13 +13,14 @@ var _start_menu: StartMenu = START_MENU.instantiate()
 var _pause_menu: PauseMenu = PAUSE_MENU.instantiate()
 
 @onready var game: Node2D = $Game
-@onready var ui: CanvasLayer = $UI
+@onready var ui: Control = $UI
+@onready var animations: AnimationPlayer = $Animations
 @onready var music_player: AudioStreamPlayer = $MusicPlayer
 
 
 func _ready() -> void:
 	ui.add_child(_start_menu)
-	_start_menu.start_button.pressed.connect(_on_game_started)
+	_start_menu.start_button.pressed.connect(_on_level_changed)
 	_start_menu.quit_button.pressed.connect(_on_game_quit)
 	_start_menu.music_button.pressed.connect(_on_music_played)
 	
@@ -30,28 +31,41 @@ func _ready() -> void:
 	_pause_menu.quit_game_button.pressed.connect(_on_game_quit)
 
 
-func _setup_level(path_to_level: String) -> void:
-	_current_level = (load(path_to_level) as PackedScene).instantiate()
-	_current_level.level_completed.connect(_on_level_completed)
+func _on_level_changed() -> void:
+	get_tree().paused = true
+	animations.play("fade_out")
+	await animations.animation_finished
+	
+	var path_to_next_level: String
+	
+	if _current_level:
+		_current_level.queue_free()
+		path_to_next_level = _current_level.path_to_next_level
+		_current_level = null
+	else:
+		ui.remove_child(_start_menu)
+		path_to_next_level = path_to_first_level
+	
+	if not path_to_next_level:
+		ui.add_child(_start_menu)
+		
+		animations.play("fade_in")
+		await animations.animation_finished
+		get_tree().paused = false
+		
+		return
+	
+	_current_level = (load(path_to_next_level) as PackedScene).instantiate()
+	_current_level.level_completed.connect(_on_level_changed)
 	_current_level.level_paused.connect(_on_level_paused)
 	game.add_child.call_deferred(_current_level)
-
-
-func _on_level_completed() -> void:
-	_current_level.queue_free()
 	
-	if _current_level.path_to_next_level:
-		_setup_level(_current_level.path_to_next_level)
-	else:
-		ui.add_child(_start_menu)
+	animations.play("fade_in")
+	await animations.animation_finished
+	get_tree().paused = false
 
 
 #region Start menu signals
-func _on_game_started() -> void:
-	ui.remove_child(_start_menu)
-	_setup_level(path_to_first_level)
-
-
 func _on_music_played() -> void:
 	music_player.playing = true
 #endregion
@@ -68,9 +82,19 @@ func _on_level_paused() -> void:
 
 
 func _on_quit_to_menu() -> void:
+	get_tree().paused = true
+	_pause_menu.fade_out_animation.play("fade_out")
+	animations.play("fade_out")
+	await animations.animation_finished
+	
 	_current_level.queue_free()
+	_current_level = null
 	ui.remove_child(_pause_menu)
 	ui.add_child(_start_menu)
+	
+	_pause_menu.fade_out_animation.play("RESET")
+	animations.play("fade_in")
+	await animations.animation_finished
 	get_tree().paused = false
 #endregion
 
